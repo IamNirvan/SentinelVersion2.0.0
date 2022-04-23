@@ -34,7 +34,9 @@ public class Genesis extends Thread {
     }
 
     @Override
-    public void run() { this.TEXT_FIELD.setText(new String(generatePassword())); }
+    public void run() { 
+        this.TEXT_FIELD.setText(new String(generatePassword())); 
+    }
         
     public byte[] generatePassword() {
         byte[] segmentOne = constructSegmentOne();
