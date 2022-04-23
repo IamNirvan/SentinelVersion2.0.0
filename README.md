@@ -17,6 +17,7 @@ Standard functionality include:
 1. Generating strong passwords.
 1. Creating multiple user accounts.
 1. Providing user authentication.
+1. Multithreading.
 
 ## Technologies
 * JDK 11
