@@ -4,7 +4,7 @@
 ## Introduction
 Sentinel is a password manager that I built as a project for my DiSE (Diploma in Software Engineering) program. It aims to facilitate the proper management of passwords.<br>
 **Version: 1.0.1** <br>
-**Project development duration:** ~Jan 2020 - Oct 2021
+**Project status:** Under maintenance.
 
 ## Features
 Standard functionality include:
