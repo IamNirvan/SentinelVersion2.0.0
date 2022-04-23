@@ -27,5 +27,6 @@ Standard functionality include:
 1. MySQL connector for Java(**recommended version:** 8.0.16)
 1. MySQL
 
+Protected by copyright &copy;
 
 
