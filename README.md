@@ -30,6 +30,6 @@ Standard functionality include:
 1. MySQL connector for Java(**8.0.16 is recommended**)
 1. MySQL
 
-Protected by copyright &copy;
+<div align="center">Protected by copyright &copy;<div/>
 
 
