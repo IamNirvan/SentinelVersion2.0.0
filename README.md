@@ -5,6 +5,7 @@
 Sentinel is a password manager that I built as a project for my DiSE (Diploma in Software Engineering) program. It aims to facilitate the proper management of passwords.<br>
 
 **Version: 1.0.1** <br>
+**Implemented language:** Java<br>
 **Project status:** Under maintenance.
 
 ## Features
@@ -20,13 +21,13 @@ Standard functionality include:
 1. Multithreading.
 
 ## Technologies
-* JDK 11
+* JDK 11.0.12
 * Swing
 * MySQL
 
-## Prerequisites
-1. Java (**at least version 8 or above**)
-1. MySQL connector for Java(**recommended version:** 8.0.16)
+## Requirements
+1. Java (**at least version 8 or above. 11.0.12 is recommended**)
+1. MySQL connector for Java(**8.0.16 is recommended**)
 1. MySQL
 
 Protected by copyright &copy;
