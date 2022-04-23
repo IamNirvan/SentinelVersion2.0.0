@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sentinel.Engines;
 
 import java.util.HashSet;
@@ -29,7 +24,6 @@ public class Genesis extends Thread {
         this.SERVICE_NAME = serviceName;
         this.PASSWORD_LENGTH = length; // Get this from the user via a GUI
         this.SEGMENT_LENGTHS = computeSegmentLengths();
-
     }
 
     public Genesis(String serviceName, int length, JTextField textField) {
@@ -37,13 +31,11 @@ public class Genesis extends Thread {
         this.SERVICE_NAME = ToolBox.convertToHashSet(serviceName.toLowerCase().toCharArray());
         this.PASSWORD_LENGTH = length;
         this.SEGMENT_LENGTHS = computeSegmentLengths();
-
     }
 
     @Override
     public void run() { this.TEXT_FIELD.setText(new String(generatePassword())); }
         
-    @SuppressWarnings("UnusedAssignment")
     public byte[] generatePassword() {
         byte[] segmentOne = constructSegmentOne();
         byte[] segmentTwo = constructSegmentTwo();
@@ -51,7 +43,6 @@ public class Genesis extends Thread {
         System.arraycopy(segmentOne, 0, result2, 0, segmentOne.length);
         System.arraycopy(segmentTwo, 0, result2, segmentOne.length, segmentTwo.length);        
         return result2;		
-
     }
 
     private byte[] constructSegmentOne() {
@@ -65,13 +56,9 @@ public class Genesis extends Thread {
             if(!elementUsed(Character.toLowerCase(element), USED_ELEMENTS)) {
                 STRING_BUILDER.append((i % 2 == 0) ? Character.toUpperCase(element) : Character.toLowerCase(element));
                 USED_ELEMENTS[i] = Character.toLowerCase(element); }
-
             i++;       
-
         }               
-
         return new String(STRING_BUILDER).getBytes();		
-
     }
     
     private byte[] constructSegmentTwo() {
@@ -89,31 +76,24 @@ public class Genesis extends Thread {
             if(i % 2 == 0) {
                 RESULT[i] = (byte)SPECIAL_CHARS[charIndex];
                 charIndex ++;
-
             } else {
                 RESULT[i] = (byte)NUMBERS[intIndex];
-                intIndex ++;
-            
+                intIndex ++;            
             }
-            
+
             // Reset charIndex to start using special characters from the begining:
             if(charIndex == (SPECIAL_CHARS.length - 1)) {
                 shuffle(SPECIAL_CHARS);
                 charIndex = 0;
-          
-            }    
-            
+            }
+
             // Reset intIndex to start using numbers from the begining:
             if(intIndex == (NUMBERS.length - 1)) {
                 shuffle(NUMBERS);
                 intIndex = 0;            
-
             }
-
         }
-
         return RESULT;
-
     }
 
     private int[] computeSegmentLengths() {        
@@ -123,13 +103,15 @@ public class Genesis extends Thread {
         int segmentTwoLength = (this.PASSWORD_LENGTH % 2 == 0) ? LENGTH_PER_SEGMENT : LENGTH_PER_SEGMENT + 1;
         segmentTwoLength = (difference > 0) ? segmentTwoLength + difference : segmentTwoLength;        
         return new int[]{SEGMENT_ONE_LENGTH, segmentTwoLength};
-
     }
 
     private static boolean elementUsed(char element, char[] array) {
-        for(char character : array) { if(element == character) { return true; } }
+        for(char character : array) { 
+            if(element == character) { 
+                return true; 
+            } 
+        }
         return false;    
-
     }
    
     public Set<Character> trimServiceName(Set<Character> source) {        
@@ -137,10 +119,10 @@ public class Genesis extends Thread {
         final Iterator<Character> ITERATOR = source.iterator();
         final int LENGTH = this.SEGMENT_LENGTHS[0];
         
-        for(int i = 0; (i < LENGTH && i < source.size()); i++) { DESTINATION.add(ITERATOR.next()); }
-
+        for(int i = 0; (i < LENGTH && i < source.size()); i++) { 
+            DESTINATION.add(ITERATOR.next()); 
+        }
         return DESTINATION;        
-
     } 
 
     private static void shuffle(char[] array) {
@@ -153,9 +135,7 @@ public class Genesis extends Thread {
             char temp = array[randomIndex1];
             array[randomIndex1] = array[randomIndex2];
             array[randomIndex2] = temp;
-
         }
-
     }
 
     private static Character[] shuffle(Set<Character> set) {
@@ -170,11 +150,7 @@ public class Genesis extends Thread {
             char temp = ARRAY[randomIndex1];
             ARRAY[randomIndex1] = ARRAY[randomIndex2];
             ARRAY[randomIndex2] = temp;            
-
         }
-
         return ARRAY;
-
     }
-
 }
