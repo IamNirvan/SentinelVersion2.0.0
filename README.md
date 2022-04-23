@@ -1,5 +1,5 @@
 # SENTINEL - Password Manager
-<img src="Logo.png"/>
+<img src="Images/Logo.png"/>
 
 ## Introduction
 Sentinel is a password manager that I built as a project for my DiSE (Diploma in Software Engineering) program. It aims to facilitate the proper management of passwords.<br>
