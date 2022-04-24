@@ -1,7 +1,6 @@
 package com.sentinelv200.core;
 
 import com.sentinelv200.engines.Engine;
-import com.sentinelv200.engines.passwordtester.Affire;
 
 import java.util.ArrayList;
 
