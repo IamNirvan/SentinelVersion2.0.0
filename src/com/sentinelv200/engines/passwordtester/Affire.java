@@ -221,19 +221,20 @@ public class Affire implements PasswordTester {
 
     @Override
     public boolean runDiagnosis() {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public void run() {
-        // TODO Auto-generated method stub
-        
+        if(this.TEST_TYPE.toLowerCase().equals("quick")) {
+            startQuickTest(); 
+        } else { 
+            startDeepTest(); 
+        }
     }
 
     @Override
     public ArrayList<Boolean> testPassword(byte[] password) {
-        // TODO Auto-generated method stub
         return null;
     }
 }
