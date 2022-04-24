@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.sentinelv200.engines.passwordtester;
 
 import com.sentinelv200.Utility.ToolBox;
@@ -20,7 +15,7 @@ import java.util.regex.Pattern;
  *
  * @author Shalin Kulawardane
  */
-public class Affire extends Thread {
+public class Affire implements PasswordTester {
     private final char[] PASSWORD;
     private final int PASSWORD_LENGTH = 15;
     private final String FIRST_NAME, LAST_NAME, USERNAME, TEST_TYPE;
@@ -42,11 +37,8 @@ public class Affire extends Thread {
             
             case "wordlist":
                 return new File("src\\Assets\\PasswordTesting\\WordList.txt");
-        
         }
-        
         return null;
-        
     }
     
     public ArrayList<Boolean> characterCheck() {
@@ -65,7 +57,6 @@ public class Affire extends Thread {
             index 2: has uppercase characters.
             index 3: has special characters.
         */
-        
         ArrayList<Boolean> result = new ArrayList<>();
         final String[] PATTERNS = {".*\\d.*", ".*[a-z]+.*", ".*[A-Z]+.*", ".*[\\W_]+.*"};
         Pattern pattern;
@@ -75,11 +66,8 @@ public class Affire extends Thread {
             pattern = Pattern.compile(expression);
             matcher = pattern.matcher(new String(this.PASSWORD));
             result.add(matcher.matches());
-        
         }        
-        
         return result;
-        
     }
 
     public static boolean characterCheck(String username, String password) {
@@ -98,7 +86,6 @@ public class Affire extends Thread {
             index 2: has uppercase characters.
             index 3: has special characters.
         */
-        
         boolean[] result = new boolean[4];
         final String[] PATTERNS = {".*\\d.*", ".*[a-z]+.*", ".*[A-Z]+.*", ".*[\\W_]+.*", ".*" + username +".*"};
         Pattern pattern;
@@ -108,11 +95,8 @@ public class Affire extends Thread {
             pattern = Pattern.compile(PATTERNS[i]);
             matcher = pattern.matcher(password);
             result[i] = matcher.matches();
-
         }        
-
         return result[0] && result[1] && result[2] && result[3];
-
     }
 
     public ArrayList<Boolean> compositionCheck() {
@@ -121,7 +105,6 @@ public class Affire extends Thread {
             It will return false if it detected any one of the 
             factors (this means it did not fully pass the test)
         */
-    
         ArrayList<Boolean> result = new ArrayList<>();
         final String[] PATTERNS = {
             ".*" + this.FIRST_NAME.toLowerCase() + ".*", 
@@ -135,41 +118,31 @@ public class Affire extends Thread {
             pattern = Pattern.compile(expression);
             matcher = pattern.matcher(new String(this.PASSWORD).toLowerCase());
             result.add(!matcher.matches());
-
         }        
-
         return result;
-                
     }
     
     public boolean executePasswordSprayingAtack() {
         /*  It will brute force a password using breached passwords
             Will return false if the password was cracked
         */   
-        
         try (Scanner scanner = new Scanner(new FileInputStream(getPath("rockyou")))) {
             while (scanner.hasNextLine()) { if(Arrays.equals(this.PASSWORD, 
                     scanner.nextLine().toCharArray())){return false; } }
-            
         }  catch (FileNotFoundException ex) { ToolBox.triggerException(ex); }
-
         return true;
-
     }
     
     public boolean executeDictionaryBasedBruteForceAttack() {
         /*  It will perform a dictionary-based brute force attack and will 
             return false if the password was cracked.
         */
-        
         try(Scanner scanner = new Scanner(new FileInputStream(getPath("wordlist")))) {
             while(scanner.hasNextLine()) { if(Arrays.equals(this.PASSWORD,  scanner.nextLine().toCharArray())) 
             { return false; } }
 
         } catch (FileNotFoundException ex) { ToolBox.triggerException(ex); }
-
         return true;
-
     }
     
     public boolean consecutiveNumbersCheck() {
@@ -177,25 +150,21 @@ public class Affire extends Thread {
             passes this test (it does not have consecutive numbers), 
             it will return true, otherwise false.
         */
-
         boolean foundNum;
         
         for(int i = 0; i < this.PASSWORD.length; i++) {
             int num1 = 0;                        
             foundNum = (Character.isDigit(this.PASSWORD[i]) && i != this.PASSWORD.length-1);
 
-            if(foundNum) { num1 = (int)this.PASSWORD[i]; }
-            
+            if(foundNum) { 
+                num1 = (int)this.PASSWORD[i]; 
+            }
             if(foundNum && Character.isDigit(this.PASSWORD[i + 1])) {
                 int num2 = (int)this.PASSWORD[i + 1];
                 return !(num2 == num1 + 1);
-                
             }
-            
         }        
-
         return true;
-
     }
     
     public boolean checkLength() { return this.PASSWORD.length >= this.PASSWORD_LENGTH; }
@@ -215,13 +184,11 @@ public class Affire extends Thread {
             index 6: last name presence check
             index 7: username presence check
         */
-        
         final ArrayList<Boolean> RESULT = new ArrayList<>();
         RESULT.add(checkLength());
         RESULT.addAll(characterCheck());
         RESULT.addAll(compositionCheck());
         return RESULT;
-        
     }
     
     public ArrayList<Boolean> startDeepTest() {        
@@ -242,7 +209,6 @@ public class Affire extends Thread {
             index 9: password spraying test
             index 10: brute force test
         */
-        
         ArrayList<Boolean> result1 = new ArrayList<>();
         result1.add(checkLength());
         result1.addAll(characterCheck());
@@ -251,15 +217,23 @@ public class Affire extends Thread {
         result1.add(executePasswordSprayingAtack());
         result1.add(executeDictionaryBasedBruteForceAttack());
         return result1;
-        
     }
-    
+
+    @Override
+    public boolean runDiagnosis() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
     @Override
     public void run() {
-        // TODO: Fix this:
-//        if(this.TEST_TYPE.toLowerCase().equals("quick")) { ToolBox.getPasswordTester().displayResult(startQuickTest()); }
-//        else { ToolBox.getPasswordTester().displayResult(startDeepTest()); }
-//
+        // TODO Auto-generated method stub
+        
     }
-    
+
+    @Override
+    public ArrayList<Boolean> testPassword(byte[] password) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }
