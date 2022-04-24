@@ -1,6 +1,5 @@
 package com.sentinelv200.core;
 
-import com.sentinelv200.core.middlemen.MiddleMan;
 import com.sentinelv200.engines.Engine;
 
 import java.util.ArrayList;
