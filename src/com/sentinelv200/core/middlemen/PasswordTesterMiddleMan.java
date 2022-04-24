@@ -30,5 +30,10 @@ public class PasswordTesterMiddleMan implements MiddleMan{
     public void removeEngine() {
         Core.removeEngine(passwordTester);        
     }
-    
+
+    public void handleRequest() {
+        /*
+        This method can be used when the front end requires the password from the generator.        
+        */
+    }
 }
