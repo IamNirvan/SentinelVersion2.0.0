@@ -28,6 +28,15 @@ public class Affire implements PasswordTester {
         
     }
         
+    public Affire() {
+        this.PASSWORD = null; 
+        this.FIRST_NAME = null;
+        this.LAST_NAME = null;
+        this.USERNAME = null;
+        this.TEST_TYPE = null;
+    }
+
+
     public static File getPath(String fileName) {   
         switch(fileName.toLowerCase()) {            
             case "rockyou":
@@ -253,5 +262,10 @@ public class Affire implements PasswordTester {
     @Override
     public ArrayList<Boolean> testPassword() {
         return (this.TEST_TYPE.toLowerCase().equals("quick")) ? startQuickTest() : startDeepTest();
+    }
+
+    @Override
+    public String toString() {
+        return "Affire";
     }
 }
