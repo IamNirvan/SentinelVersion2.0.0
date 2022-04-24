@@ -210,7 +210,7 @@ public class Affire implements PasswordTester {
         return RESULT;
     }
 
-        /** 
+    /** 
      * This method will evaluate th strength of the password by performing various tests.
      * 
      * @return
@@ -248,16 +248,10 @@ public class Affire implements PasswordTester {
     }
 
     @Override
-    public void run() {
-        testPassword();
-    }
+    public void run() { testPassword(); }
 
     @Override
-    public void testPassword() {
-        if(this.TEST_TYPE.toLowerCase().equals("quick")) {
-            System.out.println(startQuickTest().toString());
-        } else { 
-            System.out.println(startDeepTest().toString());
-        }        
+    public ArrayList<Boolean> testPassword() {
+        return (this.TEST_TYPE.toLowerCase().equals("quick")) ? startQuickTest() : startDeepTest();
     }
 }
