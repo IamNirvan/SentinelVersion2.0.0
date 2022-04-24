@@ -23,16 +23,6 @@ public class PasswordGeneratorMiddleMan implements MiddleMan{
     }
 
     @Override
-    public void addMiddleMan() {
-        Core.addMiddleMan(this);
-    }
-
-    @Override
-    public void removeMiddleMan() {
-        Core.removeMiddleMan(this);
-    }
-
-    @Override
     public void addEngine() {
         Core.addEngine(passwordGenerator);
     }
