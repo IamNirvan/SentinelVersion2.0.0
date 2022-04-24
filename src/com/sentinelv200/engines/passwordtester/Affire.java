@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sentinel.Engines;
+package com.sentinelv200.engines.passwordtester;
+
+import com.sentinelv200.Utility.ToolBox;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,8 +15,6 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import sentinel.Security.Security;
-import sentinel.Utility.ToolBox;
 
 /**
  *
@@ -255,10 +255,11 @@ public class Affire extends Thread {
     }
     
     @Override
-    public void run() {         
-        if(this.TEST_TYPE.toLowerCase().equals("quick")) { ToolBox.getPasswordTester().displayResult(startQuickTest()); }
-        else { ToolBox.getPasswordTester().displayResult(startDeepTest()); }    
-        
+    public void run() {
+        // TODO: Fix this:
+//        if(this.TEST_TYPE.toLowerCase().equals("quick")) { ToolBox.getPasswordTester().displayResult(startQuickTest()); }
+//        else { ToolBox.getPasswordTester().displayResult(startDeepTest()); }
+//
     }
     
 }

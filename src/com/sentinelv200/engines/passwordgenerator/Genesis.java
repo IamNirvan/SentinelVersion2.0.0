@@ -1,18 +1,18 @@
-package sentinel.Engines;
+package com.sentinelv200.engines.passwordgenerator;
+
+import com.sentinelv200.Utility.ToolBox;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
 import javax.swing.JTextField;
-import sentinel.Security.Security;
-import sentinel.Utility.ToolBox;
 
 /**
  *
  * @author Shalin Kulawardane
  */
-public class Genesis extends Thread {    
+public class Genesis extends Thread implements PasswordGenerator{
     private final Set<Character> SERVICE_NAME;
     private final int PASSWORD_LENGTH;
     public final int[] SEGMENT_LENGTHS;
@@ -35,10 +35,10 @@ public class Genesis extends Thread {
 
     @Override
     public void run() { 
-        this.TEXT_FIELD.setText(new String(generatePassword())); 
+        this.TEXT_FIELD.setText(new String(getPassword()));
     }
         
-    public byte[] generatePassword() {
+    public byte[] getPassword() {
         byte[] segmentOne = constructSegmentOne();
         byte[] segmentTwo = constructSegmentTwo();
         byte[] result2 = new byte[segmentOne.length + segmentTwo.length];
@@ -154,5 +154,10 @@ public class Genesis extends Thread {
             ARRAY[randomIndex2] = temp;            
         }
         return ARRAY;
+    }
+
+    @Override
+    public boolean runDiagnosis() {
+        return false;
     }
 }
