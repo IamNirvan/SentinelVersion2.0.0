@@ -17,9 +17,6 @@ public class PasswordTesterMiddleMan implements MiddleMan{
 
     @Override
     public void createEngine() {
-        if(getEngineActivationStatus(GENERATOR_NAME)) {
-            this.passwordTester = new Affire();
-        }        
     }
 
     @Override
