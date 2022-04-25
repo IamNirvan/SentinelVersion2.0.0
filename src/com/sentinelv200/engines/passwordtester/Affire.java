@@ -27,15 +27,6 @@ public class Affire implements PasswordTester {
         this.TEST_TYPE = testType;
         
     }
-        
-    public Affire() {
-        this.PASSWORD = null; 
-        this.FIRST_NAME = null;
-        this.LAST_NAME = null;
-        this.USERNAME = null;
-        this.TEST_TYPE = null;
-    }
-
 
     public static File getPath(String fileName) {   
         switch(fileName.toLowerCase()) {            
