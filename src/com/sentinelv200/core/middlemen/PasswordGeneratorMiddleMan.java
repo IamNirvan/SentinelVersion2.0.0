@@ -10,16 +10,6 @@ public class PasswordGeneratorMiddleMan implements MiddleMan{
     boolean connectionStatus = false;
 
     @Override
-    public void createEngine() {
-
-    }
-
-    @Override
-    public void createForm() {
-
-    }
-
-    @Override
     public void addEngine() {
         Core.addEngine(passwordGenerator);
     }

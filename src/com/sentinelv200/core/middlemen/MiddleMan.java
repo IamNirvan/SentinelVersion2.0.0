@@ -20,10 +20,6 @@ public interface MiddleMan {
         return false;
     }
 
-    void createEngine();
-
-    void createForm();
-
     void addEngine();
 
     void removeEngine();
